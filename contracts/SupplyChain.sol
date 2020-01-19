@@ -12,6 +12,7 @@ contract SupplyChain {
   address owner;
 
   /* Add a variable called skuCount to track the most recent sku # */
+  uint skuCount;
 
   /* Add a line that creates a public mapping that maps the SKU (a number) to an Item.
      Call this mappings items
@@ -56,7 +57,9 @@ contract SupplyChain {
    so checking that Item.State == ForSale is not sufficient to check that an Item is for sale.
    Hint: What item properties will be non-zero when an Item has been added?
    */
-  modifier forSale
+  modifier forSale{
+
+  }
   modifier sold
   modifier shipped
   modifier received
