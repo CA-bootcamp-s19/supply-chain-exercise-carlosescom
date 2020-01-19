@@ -15,8 +15,9 @@ contract SupplyChain {
   uint skuCount;
 
   /* Add a line that creates a public mapping that maps the SKU (a number) to an Item.
-     Call this mappings items
+    Call this mappings items
   */
+  mapping (uint => Item) items;
 
   /* Add a line that creates an enum called State. This should have 4 states
     ForSale
