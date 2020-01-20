@@ -133,7 +133,7 @@ contract SupplyChain {
     event associated with this function!
   */
   modifier notSold(uint sku) {
-    require(items[sku].state != 2);
+    require(items[sku].state != State.Sold);
     _;
   }
 
@@ -147,7 +147,7 @@ contract SupplyChain {
   notSold(sku)
   onlySeller(sku)
   {
-    items[sku].state = State.shipped;
+    items[sku].state = State.Shipped;
     emit LogShipped(sku);
   }
 
@@ -156,7 +156,7 @@ contract SupplyChain {
     associated with this function!
   */
   modifier notShipped(uint sku) {
-    require(items[sku].state != 3);
+    require(items[sku].state != State.Shipped);
     _;
   }
 
@@ -170,7 +170,7 @@ contract SupplyChain {
   notShipped(sku)
   onlyBuyer(sku)
   {
-    items[sku].state = State.received;
+    items[sku].state = State.Received;
     emit LogReceived(sku);
   }
 
