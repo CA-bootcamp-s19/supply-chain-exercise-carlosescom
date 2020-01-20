@@ -73,24 +73,24 @@ contract SupplyChain {
   /* For each of the following modifiers, use what you learned about modifiers
    to give them functionality. For example, the forSale modifier should require
    that the item with the given sku has the state ForSale. 
-   Note that the uninitialized Item.State is 0, which is also the index of the ForSale value,
-   so checking that Item.State == ForSale is not sufficient to check that an Item is for sale.
+   Note that the uninitialized item.state is 0, which is also the index of the ForSale value,
+   so checking that item.state == ForSale is not sufficient to check that an Item is for sale.
    Hint: What item properties will be non-zero when an Item has been added?
    */
   modifier forSale(Item memory item) {
-    require(item.State == 1);
+    require(item.state == 1);
     _;
   }
   modifier sold(Item memory item) {
-    require(item.State == 2);
+    require(item.state == 2);
     _;
   }
   modifier shipped(Item memory item) {
-    require(item.State == 3);
+    require(item.state == 3);
     _;
   }
   modifier received(Item memory item) {
-    require(item.State == 4);
+    require(item.state == 4);
     _;
   }
 
