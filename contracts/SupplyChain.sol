@@ -52,10 +52,10 @@ contract SupplyChain {
     Prefix each event with "Log" for clarity, so the forSale event will be called "LogForSale"
     Each event should accept one argument, the sku 
   */
-  emit LogForSale(uint sku);
-  emit LogSold(uint sku);
-  emit LogShipped(uint sku);
-  emit LogReceived(uint sku);
+  event LogForSale(uint sku);
+  event LogSold(uint sku);
+  event LogShipped(uint sku);
+  event LogReceived(uint sku);
 
   /* Create a modifer that checks if the msg.sender is the owner of the contract */
 
