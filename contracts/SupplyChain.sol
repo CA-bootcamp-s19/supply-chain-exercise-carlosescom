@@ -133,12 +133,12 @@ contract SupplyChain {
     event associated with this function!
   */
   modifier notSold(uint sku) {
-    require(items[sku].state != State.Sold);
+    require(items[sku].state != State.Sold,"Item has been sold");
     _;
   }
 
   modifier onlySeller(uint sku) {
-    require(msg.sender == items[sku].seller);
+    require(msg.sender == items[sku].seller,"Message sender is not seller");
     _;
   }
 
