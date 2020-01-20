@@ -77,13 +77,22 @@ contract SupplyChain {
    so checking that Item.State == ForSale is not sufficient to check that an Item is for sale.
    Hint: What item properties will be non-zero when an Item has been added?
    */
-  modifier forSale{
-
+  modifier forSale(Item item) {
+    require(item.State == 1);
+    _;
   }
-  modifier sold
-  modifier shipped
-  modifier received
-
+  modifier sold(Item item) {
+    require(item.State == 2);
+    _;
+  }
+  modifier shipped(Item item) {
+    require(item.State == 3);
+    _;
+  }
+  modifier received(Item item) {
+    require(item.State == 4);
+    _;
+  }
 
   constructor() public {
     /* Here, set the owner as the person who instantiated the contract
