@@ -40,7 +40,7 @@ contract SupplyChain {
     Be sure to add "payable" to addresses that will be handling value transfer
   */
   struct Item{
-    uint name;
+    string memory name;
     uint sku;
     uint price;
     State state;
