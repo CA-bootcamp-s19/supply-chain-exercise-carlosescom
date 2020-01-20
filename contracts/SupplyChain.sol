@@ -151,12 +151,28 @@ contract SupplyChain {
     emit LogShipped(sku);
   }
 
+  /* Add 2 modifiers to check if the item is shipped already, and that the person calling this 
+    function is the buyer. Change the state of the item to received. Remember to call the event 
+    associated with this function!
+  */
+  modifier notShipped(sku) {
+    require(items[sku].state != 3);
+    _;
+  }
 
-  /* Add 2 modifiers to check if the item is shipped already, and that the person calling this function
-  is the buyer. Change the state of the item to received. Remember to call the event associated with this function!*/
+  modifier onlyBuyer(sku) {
+    require(msg.sender == items[sku].buyer);
+    _;
+  }
+
   function receiveItem(uint sku)
-    public
-  {}
+  public
+  notShipped(sku)
+  onlyBuyer(sku)
+  {
+    items[sku].state = State.received;
+    emit LogReceived(sku);
+  }
 
   /* We have these functions completed so we can run tests, just ignore it :) */
   function fetchItem(uint _sku) public view returns (string memory name, uint sku, uint price, uint state, address seller, address buyer) {
