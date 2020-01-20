@@ -132,8 +132,8 @@ contract SupplyChain {
     function is the seller. Change the state of the item to shipped. Remember to call the 
     event associated with this function!
   */
-  modifier notSold(uint sku) {
-    require(items[sku].state != State.Sold,"Item has been sold");
+  modifier notShipped(uint sku) {
+    require(items[sku].state != State.Shipped,"Item has been sold");
     _;
   }
 
@@ -144,7 +144,7 @@ contract SupplyChain {
 
   function shipItem(uint sku)
   public
-  notSold(sku)
+  notShipped(sku)
   onlySeller(sku)
   {
     items[sku].state = State.Shipped;
@@ -155,8 +155,8 @@ contract SupplyChain {
     function is the buyer. Change the state of the item to received. Remember to call the event 
     associated with this function!
   */
-  modifier notShipped(uint sku) {
-    require(items[sku].state != State.Shipped);
+  modifier notReceived(uint sku) {
+    require(items[sku].state != State.Received);
     _;
   }
 
@@ -167,7 +167,7 @@ contract SupplyChain {
 
   function receiveItem(uint sku)
   public
-  notShipped(sku)
+  notReceived(sku)
   onlyBuyer(sku)
   {
     items[sku].state = State.Received;
