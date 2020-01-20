@@ -78,19 +78,19 @@ contract SupplyChain {
    Hint: What item properties will be non-zero when an Item has been added?
    */
   modifier forSale(Item memory item) {
-    require(item.state == 1);
+    require(item.state == State.ForSale);
     _;
   }
   modifier sold(Item memory item) {
-    require(item.state == 2);
+    require(item.state == State.Sold);
     _;
   }
   modifier shipped(Item memory item) {
-    require(item.state == 3);
+    require(item.state == State.Shipped);
     _;
   }
   modifier received(Item memory item) {
-    require(item.state == 4);
+    require(item.state == State.Received);
     _;
   }
 
