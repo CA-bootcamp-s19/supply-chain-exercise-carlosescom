@@ -128,11 +128,29 @@ contract SupplyChain {
     emit LogSold(sku);
   }
 
-  /* Add 2 modifiers to check if the item is sold already, and that the person calling this function
-  is the seller. Change the state of the item to shipped. Remember to call the event associated with this function!*/
+  /* Add 2 modifiers to check if the item is sold already, and that the person calling this 
+    function is the seller. Change the state of the item to shipped. Remember to call the 
+    event associated with this function!
+  */
+  modifier notSold(sku) {
+    require(items[sku].state != 2);
+    _;
+  }
+
+  modifier onlySeller(sku) {
+    require(msg.sender == items[sku].seller);
+    _;
+  }
+
   function shipItem(uint sku)
-    public
-  {}
+  public
+  notSold(sku)
+  onlySeller(sku)
+  {
+    items[sku].state = State.shipped;
+    emit LogShipped(sku);
+  }
+
 
   /* Add 2 modifiers to check if the item is shipped already, and that the person calling this function
   is the buyer. Change the state of the item to received. Remember to call the event associated with this function!*/
